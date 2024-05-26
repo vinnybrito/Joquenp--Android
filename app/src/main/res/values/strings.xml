@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Joquenpo</string>
+    <string name="choose_option">Escolha uma opção</string>
+    <string name="image_result_description">Image result</string>
+    <string name="image_options">Image Options</string>
+    <string name="result_app_loses">Seu adversário escolheu %s. \nVocê perdeu!</string>
+    <string name="result_app_wins">Seu adversário escolheu %s. \nVocê ganhou!</string>
+    <string name="result_draw">Seu adversário escolheu %s. \nEmpatou!</string>
+</resources>
