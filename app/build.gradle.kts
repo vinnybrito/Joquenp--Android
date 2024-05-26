@@ -52,6 +52,9 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
     // LiveData
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
+    implementation ("androidx.core:core-ktx:1.0.2")
+    implementation ("androidx.fragment:fragment-ktx:1.0.0")
+    implementation ("androidx.lifecycle:lifecycle-extensions:2.0.0")
 
     // Testes
     testImplementation(libs.junit)

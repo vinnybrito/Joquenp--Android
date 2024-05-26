@@ -1,34 +1,45 @@
 package com.vinicius.joquenpo
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.vinicius.joquenpo.databinding.ActivityMainBinding
-import kotlin.random.Random
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private val viewModel: MainViewModel by viewModels { MainViewModel.newFactory() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setupCollectors()
         setupListeners()
     }
 
-    private fun setupListeners() {
-        with(binding) {
-            imageViewPapel.setOnClickListener { optionSelected(Int.ZERO) }
-            imageViewPedra.setOnClickListener { optionSelected(Int.ONE) }
-            imageViewTesoura.setOnClickListener { optionSelected(Int.TWO) }
+    private fun setupCollectors() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.matchResult.collect { matchResult ->
+                    binding.resultTextView.text = matchResult
+                }
+            }
+        }
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.computerChoice.collect { computerChoice ->
+                    setupComputerChoiceImage(computerChoice)
+                }
+            }
         }
     }
 
-    private fun optionSelected(userChoice: Int) {
-        checkWinner(Random.nextInt(Int.THREE), userChoice)
-    }
-
-    private fun setupComputerChoiceImage(computerChoice: Int) {
+    private fun setupComputerChoiceImage(computerChoice: Int?) {
         with(binding) {
             when (computerChoice) {
                 Int.ZERO -> { imageViewPadrao.setImageResource(R.drawable.papel)}
@@ -38,27 +49,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkWinner(computerChoice: Int, userChoice: Int) {
-        setupComputerChoiceImage(computerChoice)
+    private fun setupListeners() {
         with(binding) {
-            if(computerChoice == userChoice) {
-                resultTextView.text = TIE_MESSAGE
-            } else if(computerChoice == 0 && userChoice == 2) {
-                resultTextView.text = SUCCESS_MESSAGE
-            } else if (computerChoice == 1 && userChoice == 0) {
-                resultTextView.text = SUCCESS_MESSAGE
-            } else if (computerChoice == 2 && userChoice == 1) {
-                resultTextView.text = SUCCESS_MESSAGE
-            } else {
-                resultTextView.text = FAILURE_MESSAGE
-            }
+            imageViewPapel.setOnClickListener { viewModel.setupChoices(Int.ZERO) }
+            imageViewPedra.setOnClickListener { viewModel.setupChoices(Int.ONE) }
+            imageViewTesoura.setOnClickListener { viewModel.setupChoices(Int.TWO) }
         }
-    }
-
-    companion object {
-        private const val TIE_MESSAGE = "Empate"
-        private const val SUCCESS_MESSAGE = "Você Ganhou"
-        private const val FAILURE_MESSAGE = "Você perdeu!"
     }
 
 }
