@@ -51,9 +51,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupListeners() {
         with(binding) {
-            imageViewPapel.setOnClickListener { viewModel.setupChoices(Int.ZERO) }
-            imageViewPedra.setOnClickListener { viewModel.setupChoices(Int.ONE) }
-            imageViewTesoura.setOnClickListener { viewModel.setupChoices(Int.TWO) }
+            imageViewPapel.setOnClickListener { viewModel.setupChoicesOnUserClick(Int.ZERO) }
+            imageViewPedra.setOnClickListener { viewModel.setupChoicesOnUserClick(Int.ONE) }
+            imageViewTesoura.setOnClickListener { viewModel.setupChoicesOnUserClick(Int.TWO) }
         }
     }
 

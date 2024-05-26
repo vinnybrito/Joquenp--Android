@@ -14,17 +14,21 @@ class MainViewModel : ViewModel() {
     private val _matchResult = MutableStateFlow<String?>(null)
     val matchResult = _matchResult.asStateFlow()
 
-    fun setupChoices(choice: Int) {
+    fun setupChoicesOnUserClick(choice: Int) {
         _computerChoice.value = Random.nextInt(Int.THREE)
         checkWinner(_computerChoice.value!!, choice)
     }
 
     private fun checkWinner(computerChoice: Int, userChoice: Int) {
-        val answer = if(computerChoice == userChoice) { TIE_MESSAGE }
-            else if ((computerChoice == Int.ZERO && userChoice == Int.TWO) ||
-                     (computerChoice == Int.ONE && userChoice == Int.ZERO) ||
-                     (computerChoice == Int.TWO && userChoice == Int.ONE)) { SUCCESS_MESSAGE }
-            else { FAILURE_MESSAGE }
+        val answer = if(computerChoice == userChoice) {
+            TIE_MESSAGE
+        } else if ((computerChoice == Int.ZERO && userChoice == Int.TWO) ||
+                   (computerChoice == Int.ONE && userChoice == Int.ZERO) ||
+                   (computerChoice == Int.TWO && userChoice == Int.ONE)) {
+            SUCCESS_MESSAGE
+        } else {
+            FAILURE_MESSAGE
+        }
         _matchResult.value = answer
     }
 
