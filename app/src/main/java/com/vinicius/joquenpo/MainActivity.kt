@@ -41,20 +41,16 @@ class MainActivity : AppCompatActivity() {
     private fun checkWinner(computerChoice: Int, userChoice: Int) {
         setupComputerChoiceImage(computerChoice)
         with(binding) {
-            if (computerChoice == 0 && userChoice == 1) {
-                resultTextView.text = FAILURE_MESSAGE
-            } else if (computerChoice == 0 && userChoice == 2) {
+            if(computerChoice == userChoice) {
+                resultTextView.text = TIE_MESSAGE
+            } else if(computerChoice == 0 && userChoice == 2) {
                 resultTextView.text = SUCCESS_MESSAGE
             } else if (computerChoice == 1 && userChoice == 0) {
                 resultTextView.text = SUCCESS_MESSAGE
-            } else if (computerChoice == 1 && userChoice == 2) {
-                resultTextView.text = FAILURE_MESSAGE
-            } else if (computerChoice == 2 && userChoice == 0) {
-                resultTextView.text = FAILURE_MESSAGE
             } else if (computerChoice == 2 && userChoice == 1) {
                 resultTextView.text = SUCCESS_MESSAGE
             } else {
-                resultTextView.text = TIE_MESSAGE
+                resultTextView.text = FAILURE_MESSAGE
             }
         }
     }
