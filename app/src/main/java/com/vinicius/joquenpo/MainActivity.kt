@@ -42,18 +42,18 @@ class MainActivity : AppCompatActivity() {
     private fun setupComputerChoiceImage(computerChoice: Int?) {
         with(binding) {
             when (computerChoice) {
-                Int.ZERO -> { imageViewPadrao.setImageResource(R.drawable.papel)}
-                Int.ONE -> { imageViewPadrao.setImageResource(R.drawable.pedra) }
-                Int.TWO -> { imageViewPadrao.setImageResource(R.drawable.tesoura) }
+                Int.PAPEL -> { imageViewPadrao.setImageResource(R.drawable.papel)}
+                Int.PEDRA -> { imageViewPadrao.setImageResource(R.drawable.pedra) }
+                Int.TESOURA -> { imageViewPadrao.setImageResource(R.drawable.tesoura) }
             }
         }
     }
 
     private fun setupListeners() {
         with(binding) {
-            imageViewPapel.setOnClickListener { viewModel.setupChoicesOnUserClick(Int.ZERO) }
-            imageViewPedra.setOnClickListener { viewModel.setupChoicesOnUserClick(Int.ONE) }
-            imageViewTesoura.setOnClickListener { viewModel.setupChoicesOnUserClick(Int.TWO) }
+            imageViewPapel.setOnClickListener { viewModel.setupChoicesOnUserClick(Int.PAPEL) }
+            imageViewPedra.setOnClickListener { viewModel.setupChoicesOnUserClick(Int.PEDRA) }
+            imageViewTesoura.setOnClickListener { viewModel.setupChoicesOnUserClick(Int.TESOURA) }
         }
     }
 

@@ -16,15 +16,15 @@ class MainViewModel : ViewModel() {
 
     fun setupChoicesOnUserClick(choice: Int) {
         _computerChoice.value = Random.nextInt(Int.THREE)
-        checkWinner(_computerChoice.value!!, choice)
+        checkWinner(_computerChoice.value ?: 0, choice)
     }
 
-    private fun checkWinner(computerChoice: Int, userChoice: Int) {
+    fun checkWinner(computerChoice: Int, userChoice: Int) {
         val answer = if(computerChoice == userChoice) {
             TIE_MESSAGE
-        } else if ((computerChoice == Int.ZERO && userChoice == Int.TWO) ||
-                   (computerChoice == Int.ONE && userChoice == Int.ZERO) ||
-                   (computerChoice == Int.TWO && userChoice == Int.ONE)) {
+        } else if ((computerChoice == Int.PAPEL && userChoice == Int.TESOURA) ||
+                   (computerChoice == Int.PEDRA && userChoice == Int.PAPEL) ||
+                   (computerChoice == Int.TESOURA && userChoice == Int.PEDRA)) {
             SUCCESS_MESSAGE
         } else {
             FAILURE_MESSAGE
