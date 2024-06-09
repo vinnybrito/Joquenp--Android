@@ -1,13 +1,17 @@
-package com.vinicius.joquenpo
+package com.vinicius.joquenpo.ui.joquenpo
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
+import com.vinicius.joquenpo.commons.extensions.PAPEL
+import com.vinicius.joquenpo.commons.extensions.PEDRA
+import com.vinicius.joquenpo.commons.extensions.TESOURA
+import com.vinicius.joquenpo.commons.extensions.THREE
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlin.random.Random
 
-class MainViewModel : ViewModel() {
-
+class JoquenpoViewModel : ViewModel() {
     private val _computerChoice = MutableStateFlow<Int?>(null)
     val computerChoice = _computerChoice.asStateFlow()
 
@@ -19,12 +23,12 @@ class MainViewModel : ViewModel() {
         checkWinner(_computerChoice.value ?: 0, choice)
     }
 
-    fun checkWinner(computerChoice: Int, userChoice: Int) {
+    private fun checkWinner(computerChoice: Int, userChoice: Int) {
         val answer = if(computerChoice == userChoice) {
             TIE_MESSAGE
         } else if ((computerChoice == Int.PAPEL && userChoice == Int.TESOURA) ||
-                   (computerChoice == Int.PEDRA && userChoice == Int.PAPEL) ||
-                   (computerChoice == Int.TESOURA && userChoice == Int.PEDRA)) {
+            (computerChoice == Int.PEDRA && userChoice == Int.PAPEL) ||
+            (computerChoice == Int.TESOURA && userChoice == Int.PEDRA)) {
             SUCCESS_MESSAGE
         } else {
             FAILURE_MESSAGE
@@ -37,9 +41,8 @@ class MainViewModel : ViewModel() {
         private const val SUCCESS_MESSAGE = "Você ganhou!"
         private const val FAILURE_MESSAGE = "Você perdeu!"
 
-        fun newFactory(): ViewModelProvider.Factory {
-            return ViewModelProvider.NewInstanceFactory()
+        fun newFactory() = viewModelFactory {
+            initializer { JoquenpoViewModel() }
         }
     }
-
 }

@@ -1,4 +1,4 @@
-package com.vinicius.joquenpo
+package com.vinicius.joquenpo.commons.extensions
 
 val Int.Companion.PAPEL: Int
     get() = 0

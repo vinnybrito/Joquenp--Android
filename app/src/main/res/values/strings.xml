@@ -6,4 +6,5 @@
     <string name="result_app_loses">Seu adversário escolheu %s. \nVocê perdeu!</string>
     <string name="result_app_wins">Seu adversário escolheu %s. \nVocê ganhou!</string>
     <string name="result_draw">Seu adversário escolheu %s. \nEmpatou!</string>
+    <string name="next_screen">Ir para o Joquenpo</string>
 </resources>
