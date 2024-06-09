@@ -5,6 +5,13 @@
     android:background="#1f1f1f"
     android:orientation="vertical">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
     <ImageView
         android:id="@+id/imageViewPadrao"
         android:layout_width="72dp"

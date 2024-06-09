@@ -9,9 +9,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.vinicius.joquenpo.commons.extensions.PAPEL
-import com.vinicius.joquenpo.commons.extensions.PEDRA
-import com.vinicius.joquenpo.commons.extensions.TESOURA
+import com.vinicius.joquenpo.commons.extensions.PAPER
+import com.vinicius.joquenpo.commons.extensions.ROCK
+import com.vinicius.joquenpo.commons.extensions.SCISSORS
 import com.vinicius.joquenpo.databinding.FragmentJoquenpoBinding
 import kotlinx.coroutines.launch
 
@@ -55,18 +55,18 @@ class JoquenpoFragment : Fragment() {
     private fun setupComputerChoiceImage(computerChoice: Int?) {
         with(binding) {
             when (computerChoice) {
-                Int.PAPEL -> { imageViewPadrao.setImageResource(com.vinicius.joquenpo.R.drawable.papel) }
-                Int.PEDRA -> { imageViewPadrao.setImageResource(com.vinicius.joquenpo.R.drawable.pedra) }
-                Int.TESOURA -> { imageViewPadrao.setImageResource(com.vinicius.joquenpo.R.drawable.tesoura) }
+                Int.PAPER -> { imageViewPadrao.setImageResource(com.vinicius.joquenpo.R.drawable.papel) }
+                Int.ROCK -> { imageViewPadrao.setImageResource(com.vinicius.joquenpo.R.drawable.pedra) }
+                Int.SCISSORS -> { imageViewPadrao.setImageResource(com.vinicius.joquenpo.R.drawable.tesoura) }
             }
         }
     }
 
     private fun setupListeners() {
         with(binding) {
-            imageViewPapel.setOnClickListener { viewModel.setupChoicesOnUserClick(Int.PAPEL) }
-            imageViewPedra.setOnClickListener { viewModel.setupChoicesOnUserClick(Int.PEDRA) }
-            imageViewTesoura.setOnClickListener { viewModel.setupChoicesOnUserClick(Int.TESOURA) }
+            imageViewPapel.setOnClickListener { viewModel.setupChoicesOnUserClick(Int.PAPER) }
+            imageViewPedra.setOnClickListener { viewModel.setupChoicesOnUserClick(Int.ROCK) }
+            imageViewTesoura.setOnClickListener { viewModel.setupChoicesOnUserClick(Int.SCISSORS) }
         }
     }
 

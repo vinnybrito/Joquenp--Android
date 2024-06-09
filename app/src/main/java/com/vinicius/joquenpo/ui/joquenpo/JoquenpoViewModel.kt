@@ -3,9 +3,9 @@ package com.vinicius.joquenpo.ui.joquenpo
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.vinicius.joquenpo.commons.extensions.PAPEL
-import com.vinicius.joquenpo.commons.extensions.PEDRA
-import com.vinicius.joquenpo.commons.extensions.TESOURA
+import com.vinicius.joquenpo.commons.extensions.PAPER
+import com.vinicius.joquenpo.commons.extensions.ROCK
+import com.vinicius.joquenpo.commons.extensions.SCISSORS
 import com.vinicius.joquenpo.commons.extensions.THREE
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -24,11 +24,12 @@ class JoquenpoViewModel : ViewModel() {
     }
 
     private fun checkWinner(computerChoice: Int, userChoice: Int) {
-        val answer = if(computerChoice == userChoice) {
+        val answer = if (computerChoice == userChoice) {
             TIE_MESSAGE
-        } else if ((computerChoice == Int.PAPEL && userChoice == Int.TESOURA) ||
-            (computerChoice == Int.PEDRA && userChoice == Int.PAPEL) ||
-            (computerChoice == Int.TESOURA && userChoice == Int.PEDRA)) {
+        } else if ((computerChoice == Int.PAPER && userChoice == Int.SCISSORS) ||
+            (computerChoice == Int.ROCK && userChoice == Int.PAPER) ||
+            (computerChoice == Int.SCISSORS && userChoice == Int.ROCK)
+        ) {
             SUCCESS_MESSAGE
         } else {
             FAILURE_MESSAGE
