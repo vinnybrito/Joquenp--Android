@@ -21,6 +21,7 @@ class JoquenpoFragment : Fragment() {
     private val viewModel: JoquenpoViewModel by viewModels { JoquenpoViewModel.newFactory() }
 
     override fun onCreateView(
+
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?

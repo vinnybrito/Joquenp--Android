@@ -23,7 +23,7 @@ class JoquenpoViewModel : ViewModel() {
         checkWinner(_computerChoice.value ?: 0, choice)
     }
 
-    private fun checkWinner(computerChoice: Int, userChoice: Int) {
+    fun checkWinner(computerChoice: Int, userChoice: Int) {
         val answer = if (computerChoice == userChoice) {
             TIE_MESSAGE
         } else if ((computerChoice == Int.PAPER && userChoice == Int.SCISSORS) ||
